@@ -1,0 +1,20 @@
+﻿body {
+
+}
+
+.btnDark {
+    background-color: #808080;
+    color: #fff !important;
+}
+
+.btnDark:hover {
+    background-color: #343A40;
+}
+
+.btnActive {
+    background-color: #343A40;
+}
+
+.btnSmall {
+    width: 100px;
+}

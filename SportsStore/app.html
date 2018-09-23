@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="SportsStore">
+<head>
+    <title>SportsStore</title>
+    <script src="angular.min.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <script src="controllers/parse.min.js"></script>
+    <base href="/">
+    <script>
+        angular.module("SportsStore", ["customFilters", "cart", "ngRoute"])
+            .config(function ($routeProvider, $locationProvider) {
+                $locationProvider.html5Mode(true);
+                $routeProvider
+                    .when("/complete", {
+                    templateUrl: "/views/thankYou.html"
+                })
+                .when("/placeorder", {
+                    templateUrl: "/views/placeOrder.html"
+                })
+                
+                    .when("/checkout",
+                        {
+                            templateUrl: "/views/checkoutSummary.html"
+                        })
+                    .when("/products", {
+                        templateUrl: "/views/productList.html"
+                    })
+                    .otherwise({
+                        templateUrl: "/views/productList.html"
+                    })
+            })
+    </script>
+    <script src="controllers/sportsStore.js"></script>
+    <script src="filters/customFilters.js"></script>
+    <script src="controllers/productListControllers.js"></script>
+    <script src="components/cart/cart.js"></script>
+    <script src="ngmodules/angular-route.min.js"></script>
+    <script src="controllers/checkoutController.js"></script>
+</head>
+<body ng-controller="sportsStoreCtrl">
+    <div class="container">
+        <div class="navbar bg-dark">
+            <a class="navbar-brand" href="#">SPORTS STORE</a>
+            <a href="angularjs/admin.html" target="_blank">AdminLogin</a>             
+            <cart-summary />
+        </div>
+
+        <div class="alert alert-danger mt-5 p-5 text-center" ng-show="data.error">
+            Error({{data.error.status}}). The product data was not loaded.
+            <a href="/app.html" class="alert-link">Click here to retry</a>
+        </div>
+        <ng-view />
+    </div>
+</body>
+</html>
